@@ -33,6 +33,7 @@ void topoSortDFS(unordered_map<int, list<int>>& adj, unordered_map<int, bool>& v
     ans.push(n);
 }
 
+// Topological sorted graph using BFS or Kahn's Algorithm
 void topoSortBFS(unordered_map<int, list<int>>& adj, int n, vector<int>& ans) {
     unordered_map<int, int> indegree;
     for(auto node:adj) {
