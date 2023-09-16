@@ -19,9 +19,22 @@ void printAdjList(unordered_map<int, list<pair<int,int>>>& adj) {
     }
 }
 
+// Function to print shortest path from Dijkstra
+void printDijkstraPath(vector<int> parents, int src) {
+    if(parents[src] == -1 ) {
+        return;
+    }
+    
+    printDijkstraPath(parents, parents[src]);
+    cout << parents[src] << " -> ";
+    
+}
+
 void dijkstraShortestPath(unordered_map<int, list<pair<int,int>>>& adj, int src, int n) {
     set<pair<int,int>> st;  //{(dist, node)} in sorted or using minHeap
     vector<int> dist(n+1, INT_MAX); //distance array
+    vector<int> parents(n+1);
+    parents[0] = -1, parents[src] = -1;
 
     dist[src] = 0;
     st.insert({0,src});
@@ -33,6 +46,7 @@ void dijkstraShortestPath(unordered_map<int, list<pair<int,int>>>& adj, int src,
         if(dist[src] + nodeDist < dist[node]) {
             dist[node] = dist[src] + nodeDist;
             st.insert({dist[node], node});
+            parents[node] = src;
         }
     }
 
@@ -57,6 +71,7 @@ void dijkstraShortestPath(unordered_map<int, list<pair<int,int>>>& adj, int src,
                 st.insert({nodeDist + nbr.second, nbr.first});
                 // update nbr distance in distance array
                 dist[nbr.first] = nodeDist + nbr.second;
+                parents[nbr.first] = node;
             }
         }
                
@@ -66,6 +81,13 @@ void dijkstraShortestPath(unordered_map<int, list<pair<int,int>>>& adj, int src,
     for(int i=1; i<=n; i++) {
         cout << dist[i] << ", ";
     } cout << endl;
+
+    cout << "Print shortest paths:-" << endl;
+    for(int i=1; i<=n; i++) {
+        cout << "(" << src << " -> " << i << ") :- ";
+        printDijkstraPath(parents, i);
+        cout << i << endl;
+    }
 }
 
 int main() {
@@ -88,7 +110,7 @@ int main() {
     addEdge(3,6,3,0, adj);
     addEdge(5,6,8,0, adj);
 
-    printAdjList(adj);
+    // printAdjList(adj);
     
-    dijkstraShortestPath(adj, 2, v);
+    dijkstraShortestPath(adj, 1, v);
 }
