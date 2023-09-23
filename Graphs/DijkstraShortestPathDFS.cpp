@@ -39,16 +39,16 @@ void dijkstraShortestPath(unordered_map<int, list<pair<int,int>>>& adj, int src,
     dist[src] = 0;
     st.insert({0,src});
 
-    for(auto nbr: adj[src]) {
-        int node = nbr.first;
-        int nodeDist = nbr.second;
+    // for(auto nbr: adj[src]) {
+    //     int node = nbr.first;
+    //     int nodeDist = nbr.second;
 
-        if(dist[src] + nodeDist < dist[node]) {
-            dist[node] = dist[src] + nodeDist;
-            st.insert({dist[node], node});
-            parents[node] = src;
-        }
-    }
+    //     if(dist[src] + nodeDist < dist[node]) {
+    //         dist[node] = dist[src] + nodeDist;
+    //         st.insert({dist[node], node});
+    //         parents[node] = src;
+    //     }
+    // }
 
     while(!st.empty()) {
         // Fetch smallest distance element from set
