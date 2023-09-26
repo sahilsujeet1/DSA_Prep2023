@@ -2,9 +2,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
- #include <bits/stdc++.h>
- using namespace std;
-// } Driver Code Ends
 class Solution{
   public:
     // arr[]: Input Array
@@ -80,6 +77,9 @@ int main() {
     long long A[] = {2, 4, 1, 3, 5};
     Solution obj;
     cout << obj.inversionCount(A,N) << endl;
+
+    string a = "hellosahil";
+    cout << (a.find("hello") != string::npos);
 
     return 0;
 }
