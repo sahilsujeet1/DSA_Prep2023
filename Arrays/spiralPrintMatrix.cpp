@@ -4,17 +4,17 @@ using namespace std;
 vector<int> spiralPrint(vector<vector<int>> &mat, int n, int m) {
     vector<int> ans;
 
-    int top=0, bottom=n-1, left=0, right=m-1;
+    int top=0, bottom=n-1, left=0, right=m-1, count=0, totalEle = m*n;
 
-    while(top <= bottom && left <= right) {
+    while(count<totalEle) {
 
-        for(int j=left; j<=right; j++) ans.push_back(mat[top][j]);
+        for(int j=left; j<=right && count<totalEle; j++) {ans.push_back(mat[top][j]); count++;}
         top++;
-        for(int i=top; i<=bottom; i++) ans.push_back(mat[i][right]);
+        for(int i=top; i<=bottom && count<totalEle; i++) {ans.push_back(mat[i][right]); count++;}
         right--;
-        for(int j=right; j>=left; j--) ans.push_back(mat[bottom][j]);
+        for(int j=right; j>=left && count<totalEle; j--) {ans.push_back(mat[bottom][j]); count++;}
         bottom--;
-        for(int i=bottom; i>=top; i--) ans.push_back(mat[i][left]);
+        for(int i=bottom; i>=top && count<totalEle; i--) {ans.push_back(mat[i][left]); count++;}
         left++;
     }
 
@@ -26,10 +26,9 @@ int main() {
         {1,2,3,4},
         {5,6,7,8},
         {9,10,11,12},
-        {13,14,15,16}
     };
 
-    int n = 4, m = 4;
+    int n = 3, m = 4;
 
     vector<int> traversal = spiralPrint(matrix, n, m);
 
