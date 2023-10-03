@@ -9,9 +9,9 @@ int findPivotIndex(vector<int> arr) {
 
         if(s == e) return s;
 
-        if(arr[mid] > arr[mid+1] && mid+1 <= e) {
+        if(mid+1 <= e && arr[mid] > arr[mid+1]) {
             return mid;
-        } else if(arr[mid] < arr[mid-1] && mid-1 >= s) {
+        } else if(mid-1 >= s && arr[mid-1] > arr[mid]) {
             return mid-1;
         }
 
