@@ -50,6 +50,8 @@ public:
     }
 
     int search(vector<int>& nums, int target) {
+        // Find pivot then check in left sorted array or right sorted array
+
         int pivot = findPivotIndex(nums);
         int ans = 0;
 
