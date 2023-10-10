@@ -20,7 +20,9 @@ public:
             ans = min(ans, minutes[i] - minutes[i-1]);
         }
 
-        int last = (minutes[0] + 1440) - minutes[minutes.size()-1];
+        int last1 = (minutes[0] + 1440) - minutes[minutes.size()-1];
+        int last2 = minutes[minutes.size()-1] - minutes[0];
+        int last = min(last1, last2);
         ans = min(ans, last);
         
         return ans;
